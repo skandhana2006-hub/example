@@ -2,10 +2,12 @@ yaml_version: 6
 
 project:
   title: "8-bit ALU"
-  author: skandhana
-  description: "8-bit Arithmetic Logic Unit supporting ADD, SUB, AND, OR and XOR operations"
+  author: "Your Name"
+  description: "8-bit Arithmetic Logic Unit"
+
   language: "Verilog"
   clock_hz: 0
+  tiles: "1x1"
 
   top_module: "tt_um_8bit_alu"
 
