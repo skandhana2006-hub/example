@@ -1,47 +1,46 @@
-# Sample testbench for a Tiny Tapeout project
+# 8-bit ALU Tiny Tapeout Project
 
-This is a sample testbench for a Tiny Tapeout project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
-See below to get started or for more information, check the [website](https://tinytapeout.com/hdl/testing/).
+## Overview
 
-## Setting up
+This project implements an 8-bit Arithmetic Logic Unit (ALU) using Verilog HDL for Tiny Tapeout.
 
-1. Edit [Makefile](Makefile) and modify `PROJECT_SOURCES` to point to your Verilog files.
-2. Edit [tb.v](tb.v) and replace `tt_um_example` with your module name.
+The ALU performs arithmetic and logical operations based on opcode selection.
 
-## How to run
+## Supported Operations
 
-To run the RTL simulation:
+| Opcode | Operation |
+|--------|------------|
+| 000 | Addition |
+| 001 | Subtraction |
+| 010 | AND |
+| 011 | OR |
+| 100 | XOR |
 
-```sh
-make -B
+## Inputs
+
+- ui_in[7:0]  → Operand A
+- uio_in[7:0] → Operand B and opcode bits
+
+## Outputs
+
+- uo_out[7:0] → ALU Result
+
+## Tools Used
+
+- Verilog HDL
+- Tiny Tapeout
+- OpenLane
+- Icarus Verilog
+- GTKWave
+
+## Project Structure
+
+```text
+src/        → Verilog source files
+test/       → Testbench files
+docs/       → Project documentation
 ```
 
-To run gatelevel simulation, first harden your project and copy `../runs/wokwi/results/final/verilog/gl/{your_module_name}.v` to `gate_level_netlist.v`.
+## Author
 
-Then run:
-
-```sh
-make -B GATES=yes
-```
-
-If you wish to save the waveform in VCD format instead of FST format, edit tb.v to use `$dumpfile("tb.vcd");` and then run:
-
-```sh
-make -B FST=
-```
-
-This will generate `tb.vcd` instead of `tb.fst`.
-
-## How to view the waveform file
-
-Using GTKWave
-
-```sh
-gtkwave tb.fst tb.gtkw
-```
-
-Using Surfer
-
-```sh
-surfer tb.fst
-```
+Your Name
