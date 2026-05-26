@@ -1,20 +1,28 @@
-<!---
+# 8-bit ALU
 
-This file is used to generate your project datasheet. Please fill in the information below and delete any unused
-sections.
+## Description
 
-You can also include images in this folder and reference them in the markdown. Each image must be less than
-512 kb in size, and the combined size of all images must be less than 1 MB.
--->
+This project implements a simple 8-bit Arithmetic Logic Unit (ALU).
 
-## How it works
+The ALU supports:
+- Addition
+- Subtraction
+- AND
+- OR
+- XOR
 
-Explain how your project works
+## Inputs
 
-## How to test
+- ui_in → Operand A
+- uio_in → Operand B + Opcode
 
-Explain how to use your project
+## Output
 
-## External hardware
+- uo_out → Result
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+## Applications
+
+- Processor design
+- FPGA projects
+- Digital electronics learning
+- Tiny Tapeout educational project
