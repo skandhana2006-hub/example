@@ -1,12 +1,16 @@
 yaml_version: 6
 
 project:
+  project:
   title: "My Project"
   author: "Skandhana"
   description: "TinyTapeout project"
-  language: "Verilog"
-  clock_hz: 1000000
   tiles: "1x1"
+
+  top_module: "tt_um_8bit_alu"
+
+  source_files:
+    - src/tt_um_8bit_alu.v
 
 pinout:
   ui[0]: "Input 0"
