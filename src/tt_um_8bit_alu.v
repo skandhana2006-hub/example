@@ -1,35 +1,51 @@
-yaml_version: 6
+`default_nettype none
 
-project:
-  title: "8bit ALU"
-  author: "Skandhana"
-  description: "8-bit ALU for TinyTapeout"
-  tiles: "1x1"
+module tt_um_8bit_alu (
+    input  wire [7:0] ui_in,
+    output reg  [7:0] uo_out,
 
-  top_module: "tt_um_8bit_alu"
+    input  wire [7:0] uio_in,
+    output wire [7:0] uio_out,
+    output wire [7:0] uio_oe,
 
-  source_files:
-    - src/tt_um_8bit_alu.v
+    input  wire ena,
+    input  wire clk,
+    input  wire rst_n
+);
 
-pinout:
-  ui[0]: "Input 0"
-  ui[1]: "Input 1"
-  ui[2]: "Input 2"
-  ui[3]: "Input 3"
-  ui[4]: "Input 4"
-  ui[5]: "Input 5"
-  ui[6]: "Input 6"
-  ui[7]: "Input 7"
+wire [2:0] opcode;
 
-  uo[0]: "Output 0"
-  uo[1]: "Output 1"
-  uo[2]: "Output 2"
-  uo[3]: "Output 3"
-  uo[4]: "Output 4"
-  uo[5]: "Output 5"
-  uo[6]: "Output 6"
-  uo[7]: "Output 7"
+assign opcode = uio_in[2:0];
 
-  uio[0]: "Opcode 0"
-  uio[1]: "Opcode 1"
-  uio[2]: "Opcode 2"
+always @(*) begin
+
+    case(opcode)
+
+        3'b000:
+            uo_out = ui_in + uio_in;
+
+        3'b001:
+            uo_out = ui_in - uio_in;
+
+        3'b010:
+            uo_out = ui_in & uio_in;
+
+        3'b011:
+            uo_out = ui_in | uio_in;
+
+        3'b100:
+            uo_out = ui_in ^ uio_in;
+
+        default:
+            uo_out = 8'b00000000;
+
+    endcase
+
+end
+
+assign uio_out = 8'b00000000;
+assign uio_oe  = 8'b00000000;
+
+wire _unused = &{ena, clk, rst_n, 1'b0};
+
+endmodule
