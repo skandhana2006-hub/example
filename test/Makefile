@@ -1,23 +1,19 @@
 # Makefile
-# See https://docs.cocotb.org/en/stable/quickstart.html
-
-# defaults
 SIM ?= icarus
-FST ?= -fst
 TOPLEVEL_LANG ?= verilog
 
 SRC_DIR = $(PWD)/../src
 
 ifneq ($(GATES),yes)
 
-# RTL simulation
+# RTL Simulation
 SIM_BUILD = sim_build/rtl
 
 VERILOG_SOURCES += $(SRC_DIR)/tt_um_8bit_alu.v
 
 else
 
-# Gate level simulation
+# Gate Level Simulation
 SIM_BUILD = sim_build/gl
 
 COMPILE_ARGS += -DGL_TEST
@@ -29,7 +25,6 @@ COMPILE_ARGS += -DUNIT_DELAY=\#1
 VERILOG_SOURCES += $(PDK_ROOT)/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/verilog/primitives.v
 VERILOG_SOURCES += $(PDK_ROOT)/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/verilog/gf180mcu_fd_sc_mcu7t5v0.v
 
-# Gate-level netlist
 VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
 
 endif
@@ -42,8 +37,6 @@ VERILOG_SOURCES += $(PWD)/tb.v
 
 TOPLEVEL = tb
 
-# Cocotb python test file
-COCOTB_TEST_MODULES = test
+MODULE = test
 
-# Cocotb make rules
 include $(shell cocotb-config --makefiles)/Makefile.sim
